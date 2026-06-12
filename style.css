@@ -1,0 +1,407 @@
+:root {
+  --bg: #f2eadf;
+  --paper: rgba(255, 250, 242, 0.84);
+  --ink: #1f2a1c;
+  --muted: #5f6857;
+  --accent: #bf5b2c;
+  --accent-deep: #8a3412;
+  --grass: #87a05e;
+  --grass-deep: #5d7541;
+  --warning: #b3362b;
+  --gold: #d3a34b;
+  --line: rgba(31, 42, 28, 0.12);
+  --shadow: 0 24px 60px rgba(67, 49, 28, 0.18);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Segoe UI", "Trebuchet MS", sans-serif;
+  color: var(--ink);
+  padding-bottom: env(safe-area-inset-bottom, 0);
+  background:
+    radial-gradient(circle at top left, rgba(211, 163, 75, 0.28), transparent 24%),
+    radial-gradient(circle at right 20%, rgba(191, 91, 44, 0.18), transparent 20%),
+    linear-gradient(180deg, #f6efe2 0%, #e7dcc9 100%);
+}
+
+.app-shell {
+  width: min(1440px, calc(100% - 32px));
+  margin: 24px auto 40px;
+}
+
+.hero,
+.panel,
+.field-panel {
+  backdrop-filter: blur(16px);
+  background: var(--paper);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 28px;
+  box-shadow: var(--shadow);
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.6fr 0.8fr;
+  gap: 24px;
+  padding: 28px;
+  margin-bottom: 24px;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.lang-switch {
+  display: inline-flex;
+  padding: 4px;
+  border-radius: 999px;
+  background: rgba(31, 42, 28, 0.08);
+  border: 1px solid rgba(31, 42, 28, 0.08);
+}
+
+.lang-button {
+  min-width: 52px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.lang-button.is-active {
+  background: linear-gradient(180deg, var(--accent), var(--accent-deep));
+  color: white;
+  box-shadow: 0 8px 18px rgba(138, 52, 18, 0.22);
+}
+
+.eyebrow,
+.panel-kicker {
+  margin: 0 0 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--accent-deep);
+}
+
+h1,
+h2 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  line-height: 1;
+}
+
+h1 {
+  font-size: clamp(2.2rem, 4vw, 4.3rem);
+  max-width: 12ch;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+.lede {
+  margin: 18px 0 0;
+  max-width: 68ch;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+.hero-card {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+}
+
+.hero-stat,
+.dog-stats div,
+.status-bar > div {
+  border-radius: 20px;
+  padding: 16px 18px;
+  background: rgba(255, 255, 255, 0.62);
+  border: 1px solid rgba(31, 42, 28, 0.08);
+}
+
+.hero-stat span,
+.dog-stats span,
+.status-bar span {
+  display: block;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+}
+
+.hero-stat strong,
+.dog-stats strong,
+.status-bar strong {
+  display: block;
+  margin-top: 6px;
+  font-size: 1.45rem;
+}
+
+.main-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.75fr) minmax(340px, 0.95fr);
+  gap: 24px;
+}
+
+.field-panel,
+.panel {
+  padding: 20px;
+}
+
+.panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.panel-head.compact {
+  margin-bottom: 14px;
+}
+
+#gameCanvas {
+  width: 100%;
+  height: auto;
+  border-radius: 22px;
+  background:
+    linear-gradient(180deg, rgba(240, 227, 197, 0.85), rgba(214, 198, 161, 0.9)),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.18), transparent 35%);
+  border: 1px solid rgba(31, 42, 28, 0.14);
+  display: block;
+}
+
+.status-bar,
+.dog-stats,
+.command-row {
+  display: grid;
+  gap: 12px;
+}
+
+.status-bar {
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 16px;
+}
+
+.sidebar {
+  display: grid;
+  gap: 18px;
+}
+
+.dog-stats {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.bird-list,
+.training-list,
+.event-log {
+  display: grid;
+  gap: 10px;
+}
+
+button {
+  border: 0;
+  font: inherit;
+  cursor: pointer;
+}
+
+.ghost-button,
+.action-button,
+.training-button,
+.bird-button {
+  border-radius: 18px;
+  transition: transform 140ms ease, box-shadow 140ms ease, background 140ms ease;
+}
+
+.ghost-button:hover,
+.action-button:hover,
+.training-button:hover,
+.bird-button:hover {
+  transform: translateY(-1px);
+}
+
+.ghost-button {
+  padding: 12px 16px;
+  background: rgba(31, 42, 28, 0.06);
+  color: var(--ink);
+}
+
+.action-button,
+.bird-button {
+  padding: 14px 16px;
+  background: linear-gradient(180deg, var(--accent), var(--accent-deep));
+  color: white;
+  box-shadow: 0 10px 20px rgba(138, 52, 18, 0.2);
+}
+
+.action-button.secondary {
+  background: linear-gradient(180deg, #6d874a, #47612b);
+  box-shadow: 0 10px 20px rgba(71, 97, 43, 0.2);
+}
+
+.action-button.warning {
+  background: linear-gradient(180deg, #d04d40, #9a251b);
+}
+
+.bird-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(180deg, #556f34, #354b1d);
+}
+
+.bird-button.completed {
+  background: linear-gradient(180deg, #9fa691, #737866);
+}
+
+.training-button {
+  padding: 14px 16px;
+  text-align: left;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(31, 42, 28, 0.08);
+}
+
+.training-button strong,
+.training-button span {
+  display: block;
+}
+
+.training-button span,
+.hint,
+.event-entry {
+  color: var(--muted);
+}
+
+.hint {
+  margin: 12px 2px 0;
+  line-height: 1.6;
+  font-size: 0.94rem;
+}
+
+.event-log {
+  max-height: 240px;
+  overflow: auto;
+  padding-right: 6px;
+}
+
+.event-entry {
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.56);
+  border: 1px solid rgba(31, 42, 28, 0.06);
+  line-height: 1.45;
+}
+
+.event-entry strong {
+  color: var(--ink);
+}
+
+.mobile-dock {
+  display: none;
+}
+
+@media (max-width: 1120px) {
+  .hero,
+  .main-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .app-shell {
+    width: min(100% - 20px, 1440px);
+    margin: 10px auto calc(180px + env(safe-area-inset-bottom, 0));
+  }
+
+  .topbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .hero,
+  .field-panel,
+  .panel {
+    padding: 16px;
+    border-radius: 22px;
+  }
+
+  .panel-head {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  h2 {
+    font-size: 1.55rem;
+  }
+
+  .status-bar,
+  .dog-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .command-row {
+    grid-template-columns: 1fr;
+  }
+
+  .bird-button {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .mobile-dock {
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    left: 10px;
+    z-index: 20;
+    display: grid;
+    gap: 10px;
+    padding: 12px;
+    border-radius: 22px;
+    background: rgba(255, 248, 238, 0.94);
+    border: 1px solid rgba(31, 42, 28, 0.1);
+    box-shadow: 0 20px 44px rgba(67, 49, 28, 0.24);
+    backdrop-filter: blur(16px);
+  }
+
+  .mobile-dock__birds {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(128px, 1fr);
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 2px;
+    scrollbar-width: none;
+  }
+
+  .mobile-dock__birds::-webkit-scrollbar {
+    display: none;
+  }
+
+  .mobile-dock__actions {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  .mobile-dock .bird-button,
+  .mobile-dock .action-button {
+    min-height: 58px;
+    padding: 12px 14px;
+    font-size: 0.95rem;
+  }
+}
